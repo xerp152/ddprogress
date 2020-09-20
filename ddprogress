@@ -1,0 +1,11 @@
+num=`pgrep -l '^dd$'`
+if [ -z "$num" ]
+then
+    echo "No dd in progress"
+    exit 1
+fi
+
+id=$(echo $num | cut -d ' ' -f 1)
+echo ""
+progress=$(sudo kill -USR1 $id)
+echo ""
